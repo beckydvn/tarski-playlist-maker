@@ -48,7 +48,7 @@ genre1 = lang.variable('genre1', 'genre')
 genre2 = lang.variable('genre2', 'genre')
 
 # action to add a song - can add songs in any order, just has to be shuffled
-add_song = problem.action('add song', [add, prev, genre1, genre2], precondition = ~in_playlist(add) & in_playlist(prev) & 
+add_song = problem.action('add_song', [add, prev, genre1, genre2], precondition = ~in_playlist(add) & in_playlist(prev) & 
 has_genre(add, genre1) & has_genre(prev, genre2) & ~(genre1 == genre2),
 effects = [
 fs.AddEffect(in_playlist(add)),
@@ -56,7 +56,7 @@ fs.AddEffect(on(prev, add))
 ])
 
 # action to add the FIRST song
-add_first_song = problem.action('add first song', [add], precondition = empty(),
+add_first_song = problem.action('add_first_song', [add], precondition = empty(),
 effects = [
 fs.AddEffect(in_playlist(add)),
 fs.DelEffect(empty())
