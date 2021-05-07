@@ -1,6 +1,7 @@
 import tarski
 from tarski.syntax import land
 import tarski.fstrips as fs
+from tarski.io import fstrips as iofs
 
 # define the language
 lang = tarski.language('playlist', theories = ['equality'])
@@ -47,7 +48,7 @@ genre1 = lang.variable('genre1', 'genre')
 genre2 = lang.variable('genre2', 'genre')
 
 # action to add a song - can add songs in any order, just has to be shuffled
-add_song = problem.action('add song', [add, prev, genre1, genre2], precondition = not in_playlist(add) & in_playlist(prev) & 
+add_song = problem.action('add song', [add, prev, genre1, genre2], precondition = ~in_playlist(add) & in_playlist(prev) & 
 has_genre(add, genre1) & has_genre(prev, genre2) & ~(genre1 == genre2),
 effects = [
 fs.AddEffect(in_playlist(add)),
@@ -55,10 +56,10 @@ fs.AddEffect(on(prev, add))
 ])
 
 # action to add the FIRST song
-add_first_song = problem.action('add first song', [add], precondition = empty,
+add_first_song = problem.action('add first song', [add], precondition = empty(),
 effects = [
 fs.AddEffect(in_playlist(add)),
-fs.DelEffect(empty)
+fs.DelEffect(empty())
 ])
 
 # define the initial situation
@@ -78,3 +79,8 @@ problem.init = init
 problem.goal = land(in_playlist(pop_song), in_playlist(jazz_song), in_playlist(classical_song), in_playlist(classical_song_2), in_playlist(classical_song_3))
 
 print(problem.init.as_atoms())
+
+#convert to pddl, and then drag it into the online editor
+
+writer = iofs.FstripsWriter(problem)
+writer.write("domain.pddl", "problem.pddl")
