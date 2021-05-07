@@ -7,6 +7,8 @@ lang = tarski.language('playlist', theories = ['equality'])
 
 # define the genre type
 genre = lang.sort('genre')
+# define the genre type
+song = lang.sort('song')
 
 # define predicates/fluents (what can be true/false)
 # is this song already in the playlist?
