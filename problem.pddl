@@ -14,12 +14,12 @@
 
     (:init
         (in_playlist rock_song)
+        (has_genre classical_song_2 classical_genre)
+        (has_genre rock_song rock_genre)
         (has_genre pop_song pop_genre)
         (has_genre classical_song classical_genre)
-        (has_genre classical_song_2 classical_genre)
-        (has_genre jazz_song jazz_genre)
         (has_genre classical_song_3 classical_genre)
-        (has_genre rock_song rock_genre)
+        (has_genre jazz_song jazz_genre)
     )
 
     (:goal

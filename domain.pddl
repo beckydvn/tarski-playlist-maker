@@ -46,4 +46,12 @@
         (not (empty )))
     )
 
+
+    (:action empty_test
+     :parameters ()
+     :precondition (empty )
+     :effect (and
+        (empty ))
+    )
+
 )

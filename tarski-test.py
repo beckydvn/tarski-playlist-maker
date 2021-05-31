@@ -62,6 +62,9 @@ fs.AddEffect(in_playlist(add)),
 fs.DelEffect(empty())
 ])
 
+# simply a test action to test parsing an action with no parameters
+empty_test = problem.action(name='empty_test', parameters=[], precondition=empty(), effects=[fs.AddEffect(empty())])
+
 # define the initial situation
 init = tarski.model.create(lang)
 
